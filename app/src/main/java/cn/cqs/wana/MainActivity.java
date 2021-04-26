@@ -22,9 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.cqs.base.DensityUtils;
 import cn.cqs.common.adapter.QuickAdapter;
 import cn.cqs.common.base.BaseActivity;
 import cn.cqs.common.bean.CommonItem;
+import cn.cqs.common.utils.SpacesItemDecoration;
 
 public class MainActivity extends BaseActivity implements LifecycleObserver{
 
@@ -55,8 +57,22 @@ public class MainActivity extends BaseActivity implements LifecycleObserver{
             item.drawable = getRightIcon().color(Color.GREEN);
             adapter.notifyItemChanged(0);
         }));
-        result.add(new CommonItem("DroidPlugin", "它是360手机助手实现的一种插件框架它可以在无需安装、修改的情况下运行APK文件", item -> {
-            startActivity(new Intent(getActivity(),PluginActivity.class));
+        result.add(new CommonItem("DroidPlugin", "它是360手机助手实现的一种插件框架它可以在无需安装、修改的情况下运行APK文件", item -> startActivity(new Intent(getActivity(),PluginActivity.class))));
+        result.add(new CommonItem("xxx", "xxxxxx", item -> {
+        }));
+        result.add(new CommonItem("xxx", "xxxxxx", item -> {
+        }));
+        result.add(new CommonItem("xxx", "xxxxxx", item -> {
+        }));
+        result.add(new CommonItem("xxx", "xxxxxx", item -> {
+        }));
+        result.add(new CommonItem("xxx", "xxxxxx", item -> {
+        }));
+        result.add(new CommonItem("xxx", "xxxxxx", item -> {
+        }));
+        result.add(new CommonItem("xxx", "xxxxxx", item -> {
+        }));
+        result.add(new CommonItem("xxx", "xxxxxx", item -> {
         }));
         return result;
     }
@@ -71,7 +87,11 @@ public class MainActivity extends BaseActivity implements LifecycleObserver{
                 helper.setImageDrawable(R.id.iv_arrow,item.drawable == null?getRightIcon():item.drawable);
             }
         };
+        adapter.addHeadFootSpace(12);
         adapter.attachRecyclerView(recyclerView);
+        SpacesItemDecoration itemDecoration = new SpacesItemDecoration(this,SpacesItemDecoration.VERTICAL);
+        itemDecoration.setParam(R.color.color_F6F8FC, DensityUtils.dp2px(this,12));
+        recyclerView.addItemDecoration(itemDecoration);
         adapter.setOnItemClickListener((adapter, view, position) -> {
             CommonItem commonItem = (CommonItem) adapter.getData().get(position);
             if (commonItem.onItemClickListener != null) commonItem.onItemClickListener.onClick(commonItem);
@@ -101,7 +121,7 @@ public class MainActivity extends BaseActivity implements LifecycleObserver{
      */
     private IconicsDrawable getRightIcon(){
         return new IconicsDrawable(this)
-                .color(Color.RED)
+                .color(Color.GRAY)
                 .sizeDp(10)
                 .icon(Ionicons.Icon.ion_ios_arrow_right);
     }

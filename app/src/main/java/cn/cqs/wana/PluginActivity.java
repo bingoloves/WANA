@@ -8,7 +8,6 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
@@ -18,21 +17,21 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.gyf.immersionbar.ImmersionBar;
 import com.morgoo.droidplugin.pm.PluginManager;
-import com.morgoo.helper.Log;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import butterknife.BindView;
+import cn.cqs.base.DensityUtils;
 import cn.cqs.base.ResourceUtils;
 import cn.cqs.base.log.LogUtils;
 import cn.cqs.common.adapter.QuickAdapter;
 import cn.cqs.common.base.BaseActivity;
 import cn.cqs.common.bean.ApkInfo;
 import cn.cqs.common.utils.PermissionUtils;
-import cn.cqs.common.utils.RvItemDecoration;
+import cn.cqs.common.utils.SpacesItemDecoration;
+
 import static com.morgoo.helper.compat.PackageManagerCompat.INSTALL_FAILED_NOT_SUPPORT_ABI;
 import static com.morgoo.helper.compat.PackageManagerCompat.INSTALL_SUCCEEDED;
 
@@ -106,8 +105,11 @@ public class PluginActivity extends BaseActivity implements ServiceConnection {
             }
         };
         adapter.attachRecyclerView(recyclerView);
-        //adapter.addCustomHeadView(this,12);
-        recyclerView.addItemDecoration(new RvItemDecoration(this,RvItemDecoration.Vertical));
+        adapter.addHeadFootSpace(12);
+        SpacesItemDecoration itemDecoration = new SpacesItemDecoration(this,SpacesItemDecoration.VERTICAL);
+        itemDecoration.setNoShowDivider(1,1);
+        itemDecoration.setParam(R.color.colorAccent, 1,16,16);
+        recyclerView.addItemDecoration(itemDecoration);
         adapter.setOnItemChildClickListener((adapter, view, position) -> {
             ApkInfo apkInfo = (ApkInfo) adapter.getData().get(position);
             switch (view.getId()){

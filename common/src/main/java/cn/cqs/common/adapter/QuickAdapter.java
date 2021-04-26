@@ -12,6 +12,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
 
 import cn.cqs.common.R;
+import cn.cqs.common.utils.SpacesItemDecoration;
 import cn.cqs.common.widget.SpaceHeaderView;
 
 /**
@@ -22,12 +23,14 @@ public class QuickAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> {
     private View emptyView;
     private View errorView;
     private View loadingView;
+    private Context context;
     private View.OnClickListener emptyClickListener;
     private View.OnClickListener errorClickListener;
 
     public QuickAdapter(Context context,int layoutResId, @Nullable List<T> data) {
         super(layoutResId, data);
-        initEmptyView(context);
+        this.context = context;
+        initEmptyView();
     }
 
     @Override
@@ -54,25 +57,39 @@ public class QuickAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> {
     }
 
     /**
-     * 添加自定义头部局
-     * @param context
+     * 添加头部和底部间距
      * @param height dp
      */
-    public void addCustomHeadView(Context context,int height){
-        addHeaderView(getSpaceView(context,height));
+    public void addHeadFootSpace(int height){
+        addHeadSpace(height);
+        addFootSpace(height);
     }
-    public View getSpaceView(Context context,int height){
+    /**
+     * 添加头部间距
+     * @param height dp
+     */
+    public void addHeadSpace(int height){
+        addHeaderView(getSpaceView(height));
+    }
+    /**
+     * 添加底部间距
+     * @param height
+     */
+    public void addFootSpace(int height){
+        addFooterView(getSpaceView(height));
+    }
+
+    public View getSpaceView(int height){
         return new SpaceHeaderView(context,height);
     }
-    public View getSpaceView(Context context,int height,int color){
+    public View getSpaceView(int height,int color){
         return new SpaceHeaderView(context,height,color);
     }
 
     /**
      * 初始化空视图、错误视图、加载视图
-     * @param context
      */
-    public void initEmptyView(Context context){
+    public void initEmptyView(){
         loadingView = LayoutInflater.from(context).inflate(R.layout.common_loading_view, null);
         emptyView = LayoutInflater.from(context).inflate(R.layout.common_empty_view, null);
         errorView = LayoutInflater.from(context).inflate(R.layout.common_error_view, null);
