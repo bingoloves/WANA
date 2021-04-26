@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ansen.shape.AnsenRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="68dp"
+    android:background="@android:color/white"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    app:corners_radius="4dp">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
+        android:layout_centerVertical="true"
+        android:layout_margin="4dp"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="名称"
+        android:layout_margin="4dp"
+        android:layout_alignTop="@+id/iv_logo"
+        android:layout_toEndOf="@+id/iv_logo"/>
+    <TextView
+        android:id="@+id/tv_version"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/tv_app_name"
+        android:layout_below="@id/tv_app_name"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="V1.0" />
+
+    <com.ansen.shape.AnsenTextView
+        android:id="@+id/tv_uninstall"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="卸载"
+        android:textSize="14sp"
+        android:textColor="@android:color/white"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:layout_margin="4dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/tv_install"
+        app:solid_color="#2B71FD"
+        app:pressed_solid_color="#802B71FD"
+        app:corners_radius="4dp"/>
+    <com.ansen.shape.AnsenTextView
+        android:id="@+id/tv_install"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="安装"
+        android:textSize="14sp"
+        android:textColor="@android:color/white"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:layout_margin="4dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        app:solid_color="#2B71FD"
+        app:pressed_solid_color="#802B71FD"
+        app:corners_radius="4dp"/>
+</com.ansen.shape.AnsenRelativeLayout>

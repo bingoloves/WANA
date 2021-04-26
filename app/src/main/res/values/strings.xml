@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WANA</string>
+    <string name="ion_alert">ion_alert</string>
+    <string name="ion_ios_arrow_left">ion_ios_arrow_left</string>
+    <string name="ion_ios_arrow_down">ion_ios_arrow_down</string>
+    <string name="ion_ios_arrow_right">ion_ios_arrow_right</string>
+</resources>

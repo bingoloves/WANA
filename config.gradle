@@ -1,0 +1,120 @@
+ext {
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.0"
+    minSdkVersion = 19
+    targetSdkVersion = 28
+    versionCode = 1
+    versionName = "1.0"
+    //开发优秀库收集
+    dependencies = [
+            virtual_apk         : 'com.didi.virtualapk:core:0.9.8',                                 // 滴滴插件化
+            replugin            : 'com.qihoo360.replugin:replugin-host-lib:2.3.1',                  // 360提供的插件化
+            multidex            : 'com.android.support:multidex:1.0.3',
+            appcompat_v7        : 'com.android.support:appcompat-v7:28.0.0',
+            recyclerview_v7     : 'com.android.support:recyclerview-v7:28.0.0',
+            constraint          : 'com.android.support.constraint:constraint-layout:1.1.3',
+            support_v4          : 'com.android.support:support-v4:28.0.0',
+            design              : 'com.android.support:design:28.0.0',
+            xlayout             : 'com.github.bingoloves:xlayout:1.0.2',
+            toast               : 'com.github.bingoloves:toast:1.0.0',
+            mmkv                : 'com.tencent:mmkv:1.0.19',
+            gson                : 'com.google.code.gson:gson:2.8.5',
+            autosize            : 'me.jessyan:autosize:1.2.1',
+            permission          : 'com.permissionx.guolindev:permission-support:1.2.2',
+            immersionbar        : 'com.gyf.immersionbar:immersionbar:3.0.0',
+            flyco_tab_layout    : 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar',
+            smart_refresh       : "com.scwang.smart:refresh-layout-kernel:2.0.1",                   //刷新库 SmartRefreshLayout
+            smart_refresh_header: "com.scwang.smart:refresh-header-classics:2.0.1",
+            brvah               : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42",        //Android适配器框架
+            gif                 : 'pl.droidsonroids.gif:android-gif-drawable:1.2.2',
+            ultra               : 'in.srain.cube:ultra-ptr:1.0.11',                                 //刷新库
+            glide               : 'com.github.bumptech.glide:glide:4.9.0',                          //glide
+            glide_compiler      : 'com.github.bumptech.glide:compiler:4.9.0',
+            arouter             : 'com.alibaba:arouter-api:1.5.0',                                  //ARouter路由
+            arouter_compiler    : 'com.alibaba:arouter-compiler:1.2.2',
+            butterknife         : 'com.jakewharton:butterknife:8.8.1',
+            butterknife_compiler: 'com.jakewharton:butterknife-compiler:8.8.1',
+            lifecycle_extensions: 'android.arch.lifecycle:extensions:1.1.1',
+            retrofit            : 'com.squareup.retrofit2:retrofit:2.5.0',
+            converter_gson      : 'com.squareup.retrofit2:converter-gson:2.5.0',
+            logging_interceptor : 'com.squareup.okhttp3:logging-interceptor:3.8.0',
+            adapter_rxjava2     : 'com.squareup.retrofit2:adapter-rxjava2:2.5.0',
+            rxjava              : 'io.reactivex.rxjava2:rxjava:2.2.8',
+            rxandroid           : 'io.reactivex.rxjava2:rxandroid:2.1.1',
+            location            : 'com.github.bingoloves:map_gaode:1.0.1',                          //定位库
+            gsy_video_player    : 'com.shuyu:GSYVideoPlayer:6.0.2',                                 //视频库 完整版引入(注意:非androidx 版本为 6.0.3 以下版本）
+            agentweb            : 'com.just.agentweb:agentweb:4.1.3',                               //webView
+            agentweb_file       : 'com.just.agentweb:filechooser:4.1.3',                            //可选
+            agentweb_download   : 'com.download.library:Downloader:4.1.3',                          //可选
+            pickerview          : 'org.jaaksi:pickerview:3.0.1',                                    //滚轮pickerView
+            anylayer            : 'com.github.goweii:AnyLayer:3.6.0-support',                       //弹窗库
+            luban               : 'top.zibin:Luban:1.1.8',                                          //鲁班图片压缩库
+            compressor          : 'id.zelory:compressor:2.1.1',                                     //compressor 图片压缩库
+            live_event_bus      : 'com.jeremyliao:live-event-bus:1.5.1',                            //EventBus
+            reflection          : 'me.weishu:free_reflection:3.0.1',                                //允许使用反射而不受AndroidP（包括Q和R）以上的任何限制。sdk >= 21
+            cockroach           : 'com.wanjian:cockroach:0.0.5',                                    //崩溃拦截库
+            bubble_view         : 'com.github.lguipeng:BubbleView:1.0.1',                           //气泡组件
+            iconics             : 'com.mikepenz:iconics-core:2.8.2@aar',                            //图标库
+            iconics_typeface    : 'com.mikepenz:ionicons-typeface:2.0.1.2@aar',                     //字体图标库
+            weather_icons_typeface    : 'com.mikepenz:weather-icons-typeface:2.0.10.2@aar',         //天气字体图标库
+            material_iconic_typeface  : 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar', //material-design字体图标库
+    ]
+    //依赖库
+    common_libs = [
+            dependencies.multidex,
+            dependencies.design,
+            dependencies.constraint,
+            dependencies.support_v4,
+            dependencies.appcompat_v7,
+            dependencies.recyclerview_v7,
+            dependencies.xlayout,
+            dependencies.toast,
+            dependencies.mmkv,
+            dependencies.gson,
+            dependencies.live_event_bus,
+            dependencies.pickerview,
+            dependencies.anylayer,
+            dependencies.luban,
+            dependencies.bubble_view,
+            dependencies.permission,
+            dependencies.autosize,
+            dependencies.immersionbar,
+            dependencies.flyco_tab_layout,
+            dependencies.smart_refresh,
+            dependencies.smart_refresh_header,
+            dependencies.brvah,
+            dependencies.glide,
+            dependencies.arouter,
+            dependencies.butterknife,
+            dependencies.lifecycle_extensions,
+            dependencies.retrofit,
+            dependencies.converter_gson,
+            dependencies.logging_interceptor,
+            dependencies.adapter_rxjava2,
+            dependencies.rxjava,
+            dependencies.rxandroid,
+            dependencies.agentweb,
+            dependencies.iconics,
+            dependencies.iconics_typeface,
+    ]
+    annotationProcessor = [
+            dependencies.glide_compiler,
+            dependencies.arouter_compiler,
+            dependencies.butterknife_compiler,
+    ]
+    //项目依赖的模块配置
+    modules = [':crash',':photo',':chart']
+//    implementationExcludes = [
+//            "com.android.support.test.espresso:espresso-idling-resource:3.0.2" : [
+//                    'com.android.support' : 'support-annotations'
+//            ]
+//    ]
+// 处理所有包含 exclude 的依赖
+//    implementationExcludes.each { entry ->
+//        implementation(entry.key) {
+//            entry.value.each { childEntry ->
+//                exclude(group: childEntry)
+//            }
+//        }
+//    }
+}
