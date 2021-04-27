@@ -1,6 +1,7 @@
 package cn.cqs.wana.activity;
 
 import android.Manifest;
+import android.arch.lifecycle.Observer;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,6 +36,8 @@ import cn.cqs.base.log.LogUtils;
 import cn.cqs.common.adapter.QuickAdapter;
 import cn.cqs.common.base.BaseActivity;
 import cn.cqs.common.bean.ApkInfo;
+import cn.cqs.common.bean.EventBean;
+import cn.cqs.common.utils.LiveEventBusUtils;
 import cn.cqs.common.utils.PermissionUtils;
 import cn.cqs.common.utils.SpacesItemDecoration;
 import cn.cqs.wana.R;
@@ -69,6 +73,16 @@ public class VirtualApkActivity extends BaseActivity {
         PermissionUtils.request(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, (allGranted, grantedList, deniedList) -> {
             if (allGranted) {
                 startLoadInner();
+            }
+        });
+        LiveEventBusUtils.register(this, bean -> {
+            switch (bean.getType()){
+                case 0:
+                case 1:
+                    LogUtils.e((String) bean.getBean());
+                    break;
+                default:
+                    break;
             }
         });
     }

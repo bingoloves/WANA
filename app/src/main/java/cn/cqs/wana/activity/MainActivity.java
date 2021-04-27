@@ -49,7 +49,6 @@ public class MainActivity extends BaseActivity implements LifecycleObserver{
     private List<CommonItem> getAdapterListData() {
         List<CommonItem> result = new ArrayList<>();
         result.add(new CommonItem("VirtualApk", "它是滴滴实现的一种插件框架", item -> startActivity(new Intent(getActivity(),VirtualApkActivity.class))));
-//        result.add(new CommonItem("DroidPlugin", "它是360手机助手实现的一种插件框架它可以在无需安装、修改的情况下运行APK文件", item -> startActivity(new Intent(getActivity(),PluginActivity.class))));
         result.add(new CommonItem("Widget", "部分自定义View", item -> startActivity(new Intent(getActivity(),WidgetActivity.class))));
         result.add(new CommonItem("xxx", "xxxxxx", item -> {
         }));

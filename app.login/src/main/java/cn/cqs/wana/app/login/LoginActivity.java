@@ -8,11 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gyf.immersionbar.ImmersionBar;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.cqs.base.EditTextUtils;
 import cn.cqs.common.base.BaseActivity;
+import cn.cqs.common.bean.EventBean;
+import cn.cqs.common.utils.LiveEventBusUtils;
 
 public class LoginActivity extends BaseActivity {
     @BindView(R.id.et_phone)
@@ -34,10 +37,12 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.tv_register:
                 toast("注册");
+                LiveEventBusUtils.post(new EventBean(0,"注册"));
                 //startActivity(new Intent(getActivity(),RegisterActivity.class));
                 break;
             case R.id.tv_forget:
                 toast("忘记密码");
+                LiveEventBusUtils.post(new EventBean(1,"忘记密码"));
                 //startActivity(new Intent(getActivity(),ForgetPasswordActivity.class));
                 break;
             case R.id.btn_login:
