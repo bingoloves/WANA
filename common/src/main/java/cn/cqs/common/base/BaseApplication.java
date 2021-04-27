@@ -3,7 +3,6 @@ package cn.cqs.common.base;
 import android.app.Application;
 import android.util.TypedValue;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
@@ -49,7 +48,7 @@ public abstract class BaseApplication extends Application{
         AppUtils.getInstance().init(this);
         ToastUtils.init(this, new ToastAliPayStyle(this));
         LogUtils.init(this,isDebug());
-        initARouter();
+//        initARouter();
         LiveEventBus.config().
                 supportBroadcast(this).
                 lifecycleObserverAlwaysActive(true).
@@ -57,13 +56,13 @@ public abstract class BaseApplication extends Application{
         openBlackTask();
     }
 
-    private void initARouter() {
-        if (isDebug()) {
-            ARouter.openLog();     // 打印日志
-            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
-        }
-        ARouter.init(this);
-    }
+//    private void initARouter() {
+//        if (isDebug()) {
+//            ARouter.openLog();     // 打印日志
+//            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+//        }
+//        ARouter.init(this);
+//    }
 
     private void openBlackTask() {
         AppExecutors.getInstance().diskIO().execute(() -> {

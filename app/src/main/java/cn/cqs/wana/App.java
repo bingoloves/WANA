@@ -2,8 +2,7 @@ package cn.cqs.wana;
 
 import android.content.Context;
 
-import com.morgoo.droidplugin.PluginHelper;
-
+import com.didi.virtualapk.PluginManager;
 import cn.cqs.common.base.BaseApplication;
 
 /**
@@ -25,12 +24,13 @@ public class App extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        PluginHelper.getInstance().applicationOnCreate(getBaseContext());
+//        PluginHelper.getInstance().applicationOnCreate(getBaseContext());
     }
 
     @Override
     protected void attachBaseContext(Context base) {
-        PluginHelper.getInstance().applicationAttachBaseContext(base);
+//        PluginHelper.getInstance().applicationAttachBaseContext(base);
         super.attachBaseContext(base);
+        PluginManager.getInstance(base).init();
     }
 }

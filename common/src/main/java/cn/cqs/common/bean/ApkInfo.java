@@ -1,6 +1,8 @@
 package cn.cqs.common.bean;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -11,6 +13,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+
+import cn.cqs.base.log.LogUtils;
 
 public class ApkInfo {
     public static final int STATE_NOMAL = 0;
@@ -25,10 +29,11 @@ public class ApkInfo {
      * 当前的安装状态
      */
     @State
-    public int installState = STATE_NOMAL;
+    private int installState = STATE_NOMAL;
 
     private Drawable icon;
-    private CharSequence title;
+    private String title;
+    private String pluginName;
     private String versionName;
     private int versionCode;
     private String apkFilePath;
@@ -51,12 +56,20 @@ public class ApkInfo {
         this.icon = icon;
     }
 
-    public CharSequence getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(CharSequence title) {
+    public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getPluginName() {
+        return pluginName;
+    }
+
+    public void setPluginName(String pluginName) {
+        this.pluginName = pluginName;
     }
 
     public String getVersionName() {
@@ -91,7 +104,8 @@ public class ApkInfo {
         this.packageInfo = packageInfo;
     }
 
-    public ApkInfo(Context context, PackageInfo info, String path) {
+    public ApkInfo(Context context, PackageInfo info,String pluginName, String path) {
+        this.pluginName = pluginName;
         PackageManager pm = context.getPackageManager();
         Resources resources = null;
         try {
@@ -112,7 +126,6 @@ public class ApkInfo {
         } catch (Exception e) {
             title = info.packageName;
         }
-
         versionName = info.versionName;
         versionCode = info.versionCode;
         apkFilePath = path;
@@ -125,7 +138,7 @@ public class ApkInfo {
         } catch (Exception e) {
             icon = pm.getDefaultActivityIcon();
         }
-        title = pm.getApplicationLabel(info.applicationInfo);
+        title = (String) pm.getApplicationLabel(info.applicationInfo);
         versionName = info.versionName;
         versionCode = info.versionCode;
         apkFilePath = path;
@@ -155,5 +168,23 @@ public class ApkInfo {
         valueArgs[2] = res.getConfiguration();
         res = (Resources) resCt.newInstance(valueArgs);
         return res;
+    }
+
+    public String getLaunchClassName() {
+        return getLaunchClassName(getPackageInfo());
+    }
+    /**
+     *  PackageManager pm = getPackageManager();
+        PackageInfo info = pm.getPackageArchiveInfo(apkInfo.getApkFilePath(), PackageManager.GET_ACTIVITIES);
+     * 通过包名获取此APP详细信息，包括Activities、services、versioncode、name等等 并且可以直接调用
+     */
+    public String getLaunchClassName(PackageInfo info) {
+        if(info != null){
+            ActivityInfo[] activities = info.activities;
+            if (activities != null){
+                return activities[0].name;
+            }
+        }
+        return null;
     }
 }

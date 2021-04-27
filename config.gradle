@@ -55,19 +55,19 @@ ext {
             cockroach           : 'com.wanjian:cockroach:0.0.5',                                    //崩溃拦截库
             bubble_view         : 'com.github.lguipeng:BubbleView:1.0.1',                           //气泡组件
             iconics             : 'com.mikepenz:iconics-core:2.8.2@aar',                            //图标库
-            iconics_typeface    : 'com.mikepenz:ionicons-typeface:2.0.1.2@aar',                     //字体图标库
+            iconics_typeface    : 'com.mikepenz:ionicons-typeface:2.0.1.2@aar',                     //字体图标库 IconicsDrawable 兼容性有点问题，不推荐使用
             weather_icons_typeface    : 'com.mikepenz:weather-icons-typeface:2.0.10.2@aar',         //天气字体图标库
             material_iconic_typeface  : 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar', //material-design字体图标库
     ]
     //依赖库
     common_libs = [
+            dependencies.virtual_apk,
             dependencies.multidex,
             dependencies.design,
             dependencies.constraint,
             dependencies.support_v4,
             dependencies.appcompat_v7,
             dependencies.recyclerview_v7,
-            dependencies.xlayout,
             dependencies.toast,
             dependencies.mmkv,
             dependencies.gson,
@@ -84,7 +84,6 @@ ext {
             dependencies.smart_refresh_header,
             dependencies.brvah,
             dependencies.glide,
-            dependencies.arouter,
             dependencies.butterknife,
             dependencies.lifecycle_extensions,
             dependencies.retrofit,
@@ -94,12 +93,9 @@ ext {
             dependencies.rxjava,
             dependencies.rxandroid,
             dependencies.agentweb,
-            dependencies.iconics,
-            dependencies.iconics_typeface,
     ]
     annotationProcessor = [
             dependencies.glide_compiler,
-            dependencies.arouter_compiler,
             dependencies.butterknife_compiler,
     ]
     //项目依赖的模块配置

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">common</string>
+    <string name="notice_to_register_users"><![CDATA[点击登录按钮表示同意<font color=#2B71FD>《用户注册须知》</font>]]></string>
+    <string name="to_login"><![CDATA[已有账号？&nbsp;<font color=#2B71FD>去登录</font>]]></string>
+    <string name="to_register"><![CDATA[还没有账号？&nbsp;<font color=#2B71FD>去注册</font>]]></string>
 </resources>

@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "cn.cqs.wana.app.login"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        multiDexEnabled true
+    }
+    signingConfigs{
+        release{
+            storeFile file('../keystore.jks')
+            storePassword "123456"
+            keyAlias "bingo"
+            keyPassword "123456"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':common')
+    def deps = rootProject.ext.dependencies
+    def processors = rootProject.ext.annotationProcessor
+    processors.each { v -> annotationProcessor v }
+    configurations.all {
+        resolutionStrategy.force deps.appcompat_v7
+        resolutionStrategy.force deps.support_v4
+    }
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+}
+apply plugin: 'com.didi.virtualapk.plugin'
+
+virtualApk{
+    packageId = 0x6d
+    targetHost = 'F:\\private\\WANA\\app'//宿主应用的app模块路径
+    applyHostMapping = true
+}

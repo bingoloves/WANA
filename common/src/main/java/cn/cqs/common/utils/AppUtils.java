@@ -20,7 +20,6 @@ import android.widget.TextView;
 import java.lang.reflect.Method;
 
 import cn.cqs.base.ActivityStackManager;
-import cn.cqs.xlayout.AlphaTextView;
 
 /**
  * Created by Administrator on 2021/1/9 0009.
@@ -113,19 +112,14 @@ public class AppUtils {
             @Override
             public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
                 View view = null;
-                if ("cn.cqs.xlayout.AlphaTextView".equals(name)){
-                    view = new AlphaTextView(context,attrs);
-                    ((TextView) view).setTypeface(typeface);
-                } else {
-                    try {
-                        AppCompatDelegate delegate = ((AppCompatActivity)activity).getDelegate();
-                        view = delegate.createView(parent, name, context, attrs);
-                        if (view!= null && view instanceof TextView){
-                            ((TextView) view).setTypeface(typeface);
-                        }
-                    } catch (Exception e){
-                       e.printStackTrace();
+                try {
+                    AppCompatDelegate delegate = ((AppCompatActivity)activity).getDelegate();
+                    view = delegate.createView(parent, name, context, attrs);
+                    if (view!= null && view instanceof TextView){
+                        ((TextView) view).setTypeface(typeface);
                     }
+                } catch (Exception e){
+                    e.printStackTrace();
                 }
                 return view;
             }
