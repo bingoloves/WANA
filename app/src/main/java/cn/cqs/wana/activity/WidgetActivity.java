@@ -34,9 +34,11 @@ public class WidgetActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_widget);
         initBadgeView();
-
     }
-
+    @Override
+    protected void initImmersionbar() {
+        ImmersionBar.with(this).titleBar(R.id.title_bar).statusBarDarkFont(true).init();
+    }
     /**
      * 角标组件
      */
@@ -57,9 +59,6 @@ public class WidgetActivity extends BaseActivity {
         });
     }
 
-    @Override
-    protected void initImmersionbar() {
-        ImmersionBar.with(this).titleBar(R.id.title_bar).statusBarDarkFont(true).init();
-    }
+
 
 }

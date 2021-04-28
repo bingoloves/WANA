@@ -16,6 +16,7 @@ import java.lang.ref.WeakReference;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.cqs.base.ActivityStackManager;
+import cn.cqs.base.DensityUtils;
 import cn.cqs.common.R;
 import cn.cqs.common.auto.AutoBundle;
 import cn.cqs.toast.ToastUtils;
@@ -59,6 +60,22 @@ public class BaseActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
         unbinder = ButterKnife.bind(this);
         initImmersionbar();
+    }
+    /**
+     *  dp转px
+     * @param dpValue
+     * @return
+     */
+    protected int dp2px(float dpValue){
+        return DensityUtils.dp2px(this,dpValue);
+    }
+    /**
+     *  sp转px
+     * @param spValue
+     * @return
+     */
+    protected int sp2px(float spValue){
+        return DensityUtils.sp2px(this,spValue);
     }
     /**
      * 获取颜色资源

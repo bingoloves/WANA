@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.gyf.immersionbar.ImmersionBar;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.cqs.base.DensityUtils;
 import cn.cqs.common.auto.AutoBundle;
 import cn.cqs.toast.ToastUtils;
 
@@ -51,7 +52,22 @@ public abstract class BaseFragment extends Fragment {
     protected void initImmersionbar() {
         ImmersionBar.with(this).statusBarDarkFont(true).init();
     }
-
+    /**
+     *  dp转px
+     * @param dpValue
+     * @return
+     */
+    protected int dp2px(float dpValue){
+        return DensityUtils.dp2px(getContext(),dpValue);
+    }
+    /**
+     *  sp转px
+     * @param spValue
+     * @return
+     */
+    protected int sp2px(float spValue){
+        return DensityUtils.sp2px(getContext(),spValue);
+    }
     /**
      * 获取颜色资源
      * @param color

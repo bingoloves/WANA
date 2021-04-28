@@ -1,1 +1,1 @@
-include ':app', ':base', ':common', ':library_shape', ':app.main', ':app.login'
+include ':app', ':base', ':common', ':library_shape', ':app.main', ':app.login', ':library_photo'

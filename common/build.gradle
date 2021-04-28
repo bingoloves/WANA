@@ -28,6 +28,7 @@ dependencies {
     def processors = rootProject.ext.annotationProcessor
     api project(":base")
     api project(":library_shape")
+    api project(':library_photo')
     deps.each { v -> api v }
     processors.each { v -> annotationProcessor v }
 }
