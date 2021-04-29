@@ -29,12 +29,7 @@
         <activity android:name=".activity.VirtualApkActivity"/>
         <activity android:name=".activity.WidgetActivity"/>
         <activity android:name=".activity.PhotoSelectActivity"/>
-        <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            />
-
-        <activity android:name="me.iwf.photopicker.PhotoPagerActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".activity.MultiFormActivity"/>
     </application>
 
 </manifest>

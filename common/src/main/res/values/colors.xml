@@ -11,4 +11,6 @@
     <color name="color_9DA9BA">#9DA9BA</color>
     <color name="color_2B71FD">#2B71FD</color>
     <color name="color_line">@color/color_E7EAEC</color>
+    <color name="color_F6F6F6">#F6F6F6</color>
+    <color name="color_151E32">#151E32</color>
 </resources>

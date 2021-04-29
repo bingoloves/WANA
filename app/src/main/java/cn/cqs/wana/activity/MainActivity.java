@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity implements LifecycleObserver{
         result.add(new CommonItem("VirtualApk", "它是滴滴实现的一种插件框架", item -> startActivity(new Intent(getActivity(),VirtualApkActivity.class))));
         result.add(new CommonItem("Widget", "部分自定义View", item -> startActivity(new Intent(getActivity(),WidgetActivity.class))));
         result.add(new CommonItem("PhotoSelector", "图片选择框架", item -> startActivity(new Intent(getActivity(),PhotoSelectActivity.class))));
+        result.add(new CommonItem("Form", "动态表单", item -> startActivity(new Intent(getActivity(),MultiFormActivity.class))));
         result.add(new CommonItem("xxx", "xxxxxx", item -> {
         }));
         result.add(new CommonItem("xxx", "xxxxxx", item -> {

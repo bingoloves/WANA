@@ -2,11 +2,15 @@ package cn.cqs.common.upload;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -48,29 +52,53 @@ public class NineImageView extends FrameLayout {
     private int max = 9;
     private int spanCount = 3;
     private Context context;
-
+    /**
+     * 默认的添加图片
+     */
+    private Drawable addImageDrawable;
+    private String addImageText;
     public NineImageView(@NonNull Context context) {
         super(context);
-        initView(context);
+        initView(context,null);
     }
 
     public NineImageView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initView(context);
+        initView(context,attrs);
     }
 
     public NineImageView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView(context);
+        initView(context,attrs);
     }
 
-    private void initView(Context context) {
+    private void initView(Context context,AttributeSet attrs) {
         this.context = context;
+        if (attrs != null){
+            initAttrs(context,attrs);
+        }
         recyclerView = new MaxRecyclerView(context);
         recyclerView.setLayoutParams(new LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
         recyclerView.setOverScrollMode(OVER_SCROLL_NEVER);
         addView(recyclerView);
         initRecyclerView();
+    }
+
+    /**
+     * 获取自定义属性
+     * @param context
+     * @param attrs
+     */
+    private void initAttrs(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.NineImageView);
+        if (typedArray != null) {
+            spanCount = typedArray.getInt(R.styleable.NineImageView_spanCount, 3);
+            max = typedArray.getInt(R.styleable.NineImageView_max, 9);
+            isEditable = typedArray.getBoolean(R.styleable.NineImageView_editable, true);
+            addImageDrawable = typedArray.getDrawable(R.styleable.NineImageView_addImage);
+            addImageText = typedArray.getString(R.styleable.NineImageView_addImageText);
+            typedArray.recycle();
+        }
     }
 
     private void initRecyclerView() {
@@ -82,6 +110,12 @@ public class NineImageView extends FrameLayout {
                 protected void convertTypeAdd(BaseViewHolder helper, ImageBean item) {
                     super.convertTypeAdd(helper, item);
                     helper.addOnClickListener(R.id.root_add);
+                    if (!TextUtils.isEmpty(addImageText)){
+                        helper.setText(R.id.tv_add,addImageText);
+                    }
+                    if (addImageDrawable != null){
+                        helper.setImageDrawable(R.id.iv_add,addImageDrawable);
+                    }
                 }
 
                 @Override
